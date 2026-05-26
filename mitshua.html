@@ -722,6 +722,87 @@
 <!-- ─────────────── JAVASCRIPT ─────────────── -->
 <script>
 // ── STARS ──
+(function() {
+  const el = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      width:${Math.random()*3+1}px;
+      height:${Math.random()*3+1}px;
+      animation-delay:${Math.random()*3}s;
+      animation-duration:${2+Math.random()*3}s;
+    `;
+    el.appendChild(s);
+  }
+})();
+
+// ── SAKURA PETALS ──
+(function() {
+  const canvas = document.getElementById('sakura-canvas');
+  const ctx = canvas.getContext('2d');
+  let petals = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Petal {
+    constructor() { this.reset(); this.y = Math.random() * window.innerHeight; }
+    reset() {
+      this.x = Math.random() * window.innerWidth;
+      this.y = -20;
+      this.r = 4 + Math.random() * 6;
+      this.speedY = 0.8 + Math.random() * 1.5;
+      this.speedX = (Math.random() - 0.5) * 1.5;
+      this.rotation = Math.random() * Math.PI * 2;
+      this.rotSpeed = (Math.random() - 0.5) * 0.05;
+      this.alpha = 0.5 + Math.random() * 0.5;
+      const colors = ['#f4a7b9','#fbc4d0','#f8d7e3','#fce4ec','#f48fb1'];
+      this.color = colors[Math.floor(Math.random()*colors.length)];
+    }
+    update() {
+      this.y += this.speedY;
+      this.x += this.speedX + Math.sin(this.y * 0.01) * 0.5;
+      this.rotation += this.rotSpeed;
+      if (this.y > window.innerHeight + 20) this.reset();
+    }
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rotation);
+      ctx.globalAlpha = this.alpha;
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, this.r, this.r * 0.5, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  for (let i = 0; i < 35; i++) petals.push(new Petal());
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    petals.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ── COUNTDOWN ──
+(function() {
+  // Set your birthday target here — format: YYYY, MM-1, DD
+  // Default: next June 1st (adjust to Aanya's actual birthday!)
+  function getNextBirthday() {
+    const now = new Date();
+    let bd = new Date(now.getFullYear(), 5, 1); // June 1 — change month/day!
+    if (bd < now) bd.setFullYear(bd.getFullYear() + 1);
     return bd;
   }
 
@@ -748,6 +829,7 @@
   tick();
   setInterval(tick, 1000);
 })();
+
 // ── SCROLL PROGRESS ──
 window.addEventListener('scroll', () => {
   const h = document.documentElement;
@@ -842,234 +924,6 @@ function playBirthdaySong(ctx) {
 
 function toggleMusic() {
   const btn = document.getElementById('music-btn');
-// ── STARS BACKGROUND ──
-(function() {
-  const el = document.getElementById('stars');
-  if (!el) return;
-  for (let i = 0; i < 120; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    s.style.cssText = `
-      left:${Math.random()*100}%;
-      top:${Math.random()*100}%;
-      width:${Math.random()*3+1}px;
-      height:${Math.random()*3+1}px;
-      animation-delay:${Math.random()*3}s;
-      animation-duration:${2+Math.random()*3}s;
-    `;
-    el.appendChild(s);
-  }
-})();
-
-// ── SAKURA PETALS ──
-(function() {
-  const canvas = document.getElementById('sakura-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let petals = [];
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  class Petal {
-    constructor() { this.reset(); this.y = Math.random() * window.innerHeight; }
-    reset() {
-      this.x = Math.random() * window.innerWidth;
-      this.y = -20;
-      this.r = 4 + Math.random() * 6;
-      this.speedY = 0.8 + Math.random() * 1.5;
-      this.speedX = (Math.random() - 0.5) * 1.5;
-      this.rotation = Math.random() * Math.PI * 2;
-      this.rotSpeed = (Math.random() - 0.5) * 0.05;
-      this.alpha = 0.5 + Math.random() * 0.5;
-      const colors = ['#f4a7b9','#fbc4d0','#f8d7e3','#fce4ec','#f48fb1'];
-      this.color = colors[Math.floor(Math.random()*colors.length)];
-    }
-    update() {
-      this.y += this.speedY;
-      this.x += this.speedX + Math.sin(this.y * 0.01) * 0.5;
-      this.rotation += this.rotSpeed;
-      if (this.y > window.innerHeight + 20) this.reset();
-    }
-    draw() {
-      ctx.save();
-      ctx.translate(this.x, this.y);
-      ctx.rotate(this.rotation);
-      ctx.globalAlpha = this.alpha;
-      ctx.fillStyle = this.color;
-      ctx.beginPath();
-      ctx.ellipse(0, 0, this.r, this.r * 0.5, 0, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-  }
-
-  for (let i = 0; i < 35; i++) petals.push(new Petal());
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    petals.forEach(p => { p.update(); p.draw(); });
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
-
-// ── LIVE AGE TRACKER (Replaced Countdown) ──
-(function() {
-  const birthDate = new Date(2004, 4, 27, 0, 0, 0); // 27 May 2004, 12:00 AM
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  function updateAge() {
-    const now = new Date();
-    
-    let years = now.getFullYear() - birthDate.getFullYear();
-    let months = now.getMonth() - birthDate.getMonth();
-    let days = now.getDate() - birthDate.getDate();
-    
-    // Agar current month/day birth month/day se peeche hai toh adjustments
-    if (days < 0) {
-      // Pichle mahine ke aakhri din nikalne ke liye
-      const prevMonthLastDay = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-      days += prevMonthLastDay;
-      months--;
-    }
-    if (months < 0) {
-      months += 12;
-      years--;
-    }
-
-    // Live chalne wale time parts (Hours, Minutes, Seconds)
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
-
-    // HTML elements ko update karne ke liye (Sahi IDs use karein)
-    if(document.getElementById('cd-y')) document.getElementById('cd-y').textContent = pad(years);
-    if(document.getElementById('cd-m')) document.getElementById('cd-m').textContent = pad(months);
-    if(document.getElementById('cd-d')) document.getElementById('cd-d').textContent = pad(days);
-    if(document.getElementById('cd-h')) document.getElementById('cd-h').textContent = pad(hours);
-    if(document.getElementById('cd-min')) document.getElementById('cd-min').textContent = pad(minutes);
-    if(document.getElementById('cd-s')) document.getElementById('cd-s').textContent = pad(seconds);
-  }
-
-  updateAge();
-  setInterval(updateAge, 1000);
-})();
-
-// ── SCROLL PROGRESS ──
-window.addEventListener('scroll', () => {
-  const h = document.documentElement;
-  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-  const bar = document.getElementById('progress-bar');
-  if (bar) bar.style.width = pct + '%';
-});
-
-// ── INTERSECTION OBSERVER ──
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) e.target.classList.add('visible');
-  });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.reveal, .timeline-item, .gallery-item, .wish-card').forEach(el => observer.observe(el));
-
-// ── HOF SCROLL BUTTONS ──
-const leftBtn = document.getElementById('hof-left');
-const rightBtn = document.getElementById('hof-right');
-const track = document.getElementById('hof-track');
-
-if (leftBtn && track) {
-  leftBtn.addEventListener('click', () => {
-    track.scrollBy({ left: -280, behavior: 'smooth' });
-  });
-}
-if (rightBtn && track) {
-  rightBtn.addEventListener('click', () => {
-    track.scrollBy({ left: 280, behavior: 'smooth' });
-  });
-}
-
-// ── LIGHTBOX ──
-function openLightbox(src, fallback) {
-  const lb = document.getElementById('lightbox');
-  const cnt = document.getElementById('lightbox-content');
-  if (!lb || !cnt) return;
-  const img = new Image();
-  img.src = src;
-  img.onload = () => {
-    cnt.innerHTML = '';
-    cnt.appendChild(img);
-  };
-  img.onerror = () => {
-    cnt.innerHTML = `<div class="lightbox-placeholder">${fallback}</div>`;
-  };
-  lb.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  const lb = document.getElementById('lightbox');
-  if (lb) lb.classList.remove('active');
-  document.body.style.overflow = '';
-}
-const lbElement = document.getElementById('lightbox');
-if (lbElement) {
-  lbElement.addEventListener('click', function(e) {
-    if (e.target === this) closeLightbox();
-  });
-}
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-window.openLightbox = openLightbox;
-window.closeLightbox = closeLightbox;
-
-// ── FLOATING HEARTS ON CLICK ──
-document.addEventListener('click', (e) => {
-  if (e.target.closest('.hof-btn') || e.target.closest('#music-btn') || e.target.closest('.lightbox-overlay')) return;
-  const hearts = ['💕','🌸','✨','💖','🌷','⭐'];
-  const h = document.createElement('div');
-  h.className = 'floating-heart';
-  h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
-  h.style.left = (e.clientX - 15) + 'px';
-  h.style.top  = (e.clientY - 15) + 'px';
-  document.body.appendChild(h);
-  setTimeout(() => h.remove(), 4000);
-});
-
-// ── MUSIC (Web Audio API) ──
-let audioCtx = null, isPlaying = false, sourceNodes = [];
-function playBirthdaySong(ctx) {
-  const notes = [
-    261.6,261.6,293.7,261.6,349.2,329.6,0,
-    261.6,261.6,293.7,261.6,392,349.2,0,
-    261.6,261.6,523.2,440,349.2,329.6,293.7,0,
-    466.2,466.2,440,349.2,392,349.2,0
-  ];
-  const dur = 0.28;
-  let t = ctx.currentTime + 0.1;
-  notes.forEach(freq => {
-    if (freq === 0) { t += dur; return; }
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain); gain.connect(ctx.destination);
-    osc.frequency.value = freq;
-    osc.type = 'triangle';
-    gain.gain.setValueAtTime(0, t);
-    gain.gain.linearRampToValueAtTime(0.25, t + 0.02);
-    gain.gain.linearRampToValueAtTime(0, t + dur - 0.05);
-    osc.start(t); osc.stop(t + dur);
-    sourceNodes.push(osc);
-    t += dur;
-  });
-  return t - ctx.currentTime;
-}
-
-function toggleMusic() {
-  const btn = document.getElementById('music-btn');
-  if (!btn) return;
   if (isPlaying) {
     sourceNodes.forEach(n => { try { n.stop(); } catch(e) {} });
     sourceNodes = [];
@@ -1091,7 +945,6 @@ function toggleMusic() {
     }, len * 1000);
   }
 }
-window.toggleMusic = toggleMusic;
 </script>
 </body>
 </html>
