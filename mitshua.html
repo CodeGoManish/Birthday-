@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Aanya 🌷</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sakura: #f4a7b9;
+    --sakura-dark: #d97195;
+    --sakura-light: #fde8ef;
+    --petal: #fbc4d0;
+    --sky: #c9e8f8;
+    --sky-dark: #7ec8e3;
+    --navy: #1a1a3e;
+    --cream: #fff9f9;
+    --gold: #f9d56e;
+    --text: #3a2a3a;
+    --text-soft: #7a6070;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+  .font-anime { font-family: 'Mochiy Pop One', sans-serif; }
+
+  /* ── SAKURA CANVAS ── */
+  #sakura-canvas {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 100;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a3e 0%, #2d1b4e 50%, #3d1a3a 100%);
+  }
+  .hero-bg-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.35; z-index: 0;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(244,167,185,0.15) 0%, rgba(26,26,62,0.7) 70%);
+    z-index: 1;
+  }
+  .hero-stars {
+    position: absolute; inset: 0; z-index: 1; overflow: hidden;
+  }
+  .star {
+    position: absolute; width: 3px; height: 3px;
+    border-radius: 50%; background: white;
+    animation: twinkle 3s infinite alternate;
+  }
+  @keyframes twinkle { 0%{opacity:0.2} 100%{opacity:1} }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; padding: 2rem;
+    animation: fadeInUp 1.5s ease forwards;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero h1 {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    color: var(--sakura);
+    text-shadow: 0 0 40px rgba(244,167,185,0.6), 0 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.2;
+  }
+  .hero p {
+    color: rgba(255,255,255,0.85);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    margin-top: 1rem;
+    font-weight: 600;
+  }
+  .countdown {
+    display: flex; gap: 1.5rem;
+    justify-content: center; flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .count-box {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(244,167,185,0.4);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    min-width: 80px;
+    text-align: center;
+    color: white;
+  }
+  .count-box .num {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 2.2rem; color: var(--sakura); line-height: 1;
+  }
+  .count-box .lbl {
+    font-size: 0.75rem; opacity: 0.7; margin-top: 0.3rem;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    color: rgba(255,255,255,0.5); font-size: 0.85rem;
+    animation: bounce 2s infinite; z-index: 2;
+    text-align: center;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 5rem 1.5rem; }
+  .container { max-width: 900px; margin: 0 auto; }
+  .section-title {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--sakura-dark);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .section-sub {
+    text-align: center; color: var(--text-soft);
+    font-size: 1rem; margin-bottom: 3rem;
+  }
+
+  /* ── LETTER ── */
+  .letter-section { background: var(--sakura-light); }
+  .letter-card {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 8px 40px rgba(244,167,185,0.2);
+    border: 1px solid var(--petal);
+    position: relative;
+    overflow: hidden;
+  }
+  .letter-card::before {
+    content: '🌸';
+    position: absolute; top: 1.5rem; right: 2rem;
+    font-size: 3rem; opacity: 0.15;
+  }
+  .letter-card p {
+    font-size: 1.1rem; line-height: 1.9;
+    color: var(--text); margin-bottom: 1rem;
+  }
+  .letter-card .sign {
+    text-align: right; font-weight: 700;
+    color: var(--sakura-dark); margin-top: 2rem;
+    font-size: 1rem;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-section { background: white; }
+  .timeline-item {
+    display: flex; gap: 3rem; align-items: center;
+    margin-bottom: 5rem;
+    opacity: 0; transform: translateY(30px);
+    transition: all 0.7s ease;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+  .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+  .timeline-img {
+    flex: 1; min-width: 0;
+  }
+  .timeline-img img {
+    width: 100%; border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    border: 4px solid var(--petal);
+    object-fit: cover;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--petal), var(--sky));
+    display: block;
+  }
+  .timeline-img .img-placeholder {
+    width: 100%; aspect-ratio: 4/3;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--petal) 0%, var(--sky) 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: var(--sakura-dark); font-size: 4rem;
+    border: 4px solid var(--petal);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+  .timeline-img .img-placeholder p {
+    font-size: 0.9rem; margin-top: 0.5rem;
+    color: var(--text-soft); font-weight: 600;
+  }
+  .timeline-text { flex: 1; min-width: 0; }
+  .timeline-chapter {
+    font-size: 0.8rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--sakura); margin-bottom: 0.5rem;
+  }
+  .timeline-title {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: 1.8rem; color: var(--sakura-dark);
+    margin-bottom: 1rem;
+  }
+  .timeline-body { font-size: 1.05rem; line-height: 1.8; color: var(--text-soft); }
+  @media (max-width: 640px) {
+    .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; }
+  }
+
+  /* ── HALL OF FAME ── */
+  .hof-section { background: var(--navy); overflow: hidden; }
+  .hof-section .section-title { color: var(--gold); }
+  .hof-section .section-sub { color: rgba(255,255,255,0.5); }
+  .hof-scroll-wrap { position: relative; }
+  .hof-track {
+    display: flex; gap: 1.5rem;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 1rem 0.5rem 2rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .hof-track::-webkit-scrollbar { display: none; }
+  .hof-card {
+    flex-shrink: 0; width: 260px;
+    scroll-snap-align: center;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(244,167,185,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .hof-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(244,167,185,0.15);
+  }
+  .hof-card-img {
+    width: 100%; height: 240px; object-fit: cover;
+    background: linear-gradient(135deg, #2d1b4e, #3d1a3a);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+  }
+  .hof-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .hof-card-body { padding: 1.25rem; }
+  .hof-card-title {
+    font-family: 'Mochiy Pop One', sans-serif;
+    color: var(--sakura); font-size: 1.1rem; margin-bottom: 0.4rem;
+  }
+  .hof-card-caption { color: rgba(255,255,255,0.6); font-size: 0.9rem; font-style: italic; }
+  .hof-nav {
+    display: flex; justify-content: center; gap: 0.75rem; margin-top: 1rem;
+  }
+  .hof-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(244,167,185,0.3);
+    color: var(--sakura); font-size: 1.2rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .hof-btn:hover { background: rgba(244,167,185,0.2); }
+
+  /* ── GALLERY ── */
+  .gallery-section { background: var(--sakura-light); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .gallery-item {
+    aspect-ratio: 1;
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    background: linear-gradient(135deg, var(--petal), var(--sky));
+    border: 3px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    opacity: 0; transform: scale(0.9);
+    transition: all 0.5s ease;
+  }
+  .gallery-item.visible { opacity: 1; transform: scale(1); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery-item .overlay {
+    position: absolute; inset: 0;
+    background: rgba(244,167,185,0.85);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .gallery-item:hover .overlay { opacity: 1; }
+  .gallery-item .overlay span { font-size: 2rem; }
+  .gallery-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    color: var(--sakura-dark);
+  }
+  .gallery-placeholder small {
+    font-size: 0.7rem; color: var(--text-soft); margin-top: 0.3rem;
+    font-weight: 600; letter-spacing: 0.5px;
+  }
+
+  /* ── FINALE / WISHES ── */
+  .finale-section {
+    background: linear-gradient(135deg, var(--navy) 0%, #2d1b4e 100%);
+    text-align: center; padding: 6rem 1.5rem;
+  }
+  .finale-section .section-title { color: var(--gold); margin-bottom: 1rem; }
+  .finale-section p { color: rgba(255,255,255,0.7); font-size: 1.1rem; max-width: 600px; margin: 0 auto 3rem; }
+  .wishes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem; max-width: 800px; margin: 0 auto 3rem;
+  }
+  .wish-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(244,167,185,0.25);
+    border-radius: 16px; padding: 1.5rem 1rem;
+    color: white; text-align: center;
+    opacity: 0; transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
+  .wish-card.visible { opacity: 1; transform: translateY(0); }
+  .wish-card .wish-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+  .wish-card .wish-text { font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.5; }
+  .big-text {
+    font-family: 'Mochiy Pop One', sans-serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    color: var(--sakura);
+    text-shadow: 0 0 60px rgba(244,167,185,0.5);
+    margin: 2rem 0;
+    animation: pulse 2s infinite alternate;
+  }
+  @keyframes pulse {
+    from { text-shadow: 0 0 30px rgba(244,167,185,0.4); }
+    to   { text-shadow: 0 0 80px rgba(244,167,185,0.9), 0 0 120px rgba(244,167,185,0.3); }
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f0f26; color: rgba(255,255,255,0.5);
+    text-align: center; padding: 2.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  footer strong { color: var(--sakura); }
+  footer p { margin: 0.3rem 0; }
+
+  /* ── LIGHTBOX ── */
+  .lightbox-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 999;
+    display: none; align-items: center; justify-content: center;
+  }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-inner { position: relative; max-width: 90vw; max-height: 90vh; }
+  .lightbox-inner img { max-width: 90vw; max-height: 85vh; border-radius: 12px; object-fit: contain; }
+  .lightbox-close {
+    position: absolute; top: -2rem; right: 0;
+    color: white; font-size: 2rem; cursor: pointer; background: none; border: none;
+  }
+  .lightbox-placeholder {
+    min-width: 400px; min-height: 300px;
+    background: linear-gradient(135deg, #2d1b4e, #3d1a3a);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem;
+  }
+
+  /* ── FLOATING HEARTS ── */
+  .floating-heart {
+    position: fixed; pointer-events: none; z-index: 99;
+    font-size: 1.5rem;
+    animation: floatUp 4s ease-in forwards;
+  }
+  @keyframes floatUp {
+    0%   { opacity: 1; transform: translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateY(-300px) rotate(30deg); }
+  }
+
+  /* ── SCROLL PROGRESS ── */
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--sakura), var(--gold));
+    z-index: 200; width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* ── MUSIC PLAYER ── */
+  .music-fab {
+    position: fixed; bottom: 2rem; right: 2rem;
+    z-index: 150;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--sakura-dark);
+    border: none; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(217,113,149,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: white;
+  }
+  .music-fab:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(217,113,149,0.7); }
+  .music-fab.playing { animation: spin 4s linear infinite; }
+  @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+  /* ── AOS-LIKE via IntersectionObserver ── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: all 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- Scroll progress -->
+<div id="progress-bar"></div>
+
+<!-- Sakura canvas -->
+<canvas id="sakura-canvas"></canvas>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div id="lightbox-content"></div>
+  </div>
+</div>
+
+<!-- Music FAB -->
+<button class="music-fab" id="music-btn" title="Play Birthday Song" onclick="toggleMusic()">🎵</button>
+
+<!-- ─────────────── HERO ─────────────── -->
+<header class="hero">
+  <video class="hero-bg-video" autoplay loop muted playsinline>
+    <source src="img/sa.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-stars" id="stars"></div>
+
+  <div class="hero-content">
+    <p style="color:var(--petal);font-size:1rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.5rem;opacity:0.8;">✨ A Special Surprise ✨</p>
+    <h1>Happy Birthday<br>Aanya 🌷</h1>
+    <p>Celebrating your wonderful journey — wishing you all the happiness in the world!</p>
+
+    <div class="countdown" id="countdown">
+      <div class="count-box"><div class="num" id="cd-d">00</div><div class="lbl">Days</div></div>
+      <div class="count-box"><div class="num" id="cd-h">00</div><div class="lbl">Hours</div></div>
+      <div class="count-box"><div class="num" id="cd-m">00</div><div class="lbl">Mins</div></div>
+      <div class="count-box"><div class="num" id="cd-s">00</div><div class="lbl">Secs</div></div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">↓ Scroll to explore ↓</div>
+</header>
+
+<!-- ─────────────── LETTER ─────────────── -->
+<section class="letter-section">
+  <div class="container">
+    <h2 class="section-title reveal">A Special Message For You 💌</h2>
+    <p class="section-sub reveal">From all of us, with love</p>
+    <div class="letter-card reveal">
+      <p>Hey Aanya 🌷,</p>
+      <p>Wish you a very Happy Birthday! May God fulfil all your wishes, may you have an endless supply of happy days, and may your dreams turn into reality — a life surrounded by pets and adventures worthy of a manga! 🐾📖</p>
+      <p>Thank you for always being so kind and being the reason behind everyone's smile. Always connected to your roots, a true friend to everyone — you always stay yourself and <em>that's your vibe</em>. We are all very lucky. We may not be in the City of Gems, but we found a real gem. 💎</p>
+      <p>You deserve every bit of joy this world has to offer. Keep shining, keep being you.</p>
+      <div class="sign">With love,<br>Manish 💕 & all your people ✨</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── TIMELINE ─────────────── -->
+<section class="timeline-section">
+  <div class="container">
+    <h2 class="section-title reveal">Your Story Arc 📖</h2>
+    <p class="section-sub reveal">Chapter by chapter — memories we'll never forget</p>
+
+    <div class="timeline-item">
+      <div class="timeline-img">
+        <div class="img-placeholder" onclick="openLightbox('img/jammu.png','🏔️')">
+          <span>🏔️</span>
+          
+        </div>
+      </div>
+      <div class="timeline-text">
+        <p class="timeline-chapter">Chapter 01 — The Beginning</p>
+        <h3 class="timeline-title">Our First Meeting</h3>
+        <p class="timeline-body">Every great story has a first chapter. This is where ours began — the moment we met and somehow knew this was the start of something special. We mate on coahing you was begging a copy of physics then we can say its first meetings  .Almost 7 years later, we're still together! 🌸</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-img">
+        <div class="img-placeholder" onclick="openLightbox('img/food.png','🍜')">
+          <span>🍜</span>
+          
+        </div>
+      </div>
+      <div class="timeline-text">
+        <p class="timeline-chapter">Chapter 02 — Adventures Begin</p>
+        <h3 class="timeline-title">Good Food, Great Memories</h3>
+        <p class="timeline-body">They say the best conversations happen over food. And ours? Legendary.hamne kya khaya hoga pahli baar sayad smaosa and colddrink yaad aa gya hoga . 🍽️</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-img">
+        <div class="img-placeholder" onclick="openLightbox('img/mumbai.png','🌆')">
+          <span>🌆</span>
+          
+        </div>
+      </div>
+      <div class="timeline-text">
+        <p class="timeline-chapter">Chapter 03 — The City Called</p>
+        <h3 class="timeline-title">Delhi Diaries</h3>
+        <p class="timeline-body">The city of dreams — and we made some of our own here. Every street, every corner has a little piece of our story.sarri stories tumhe letter main jayega but mazedaar ta aur hoga  🚂</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-img">
+        <div class="img-placeholder" onclick="openLightbox('img/imagica.png','🎡')">
+          <span>🎡</span>
+          
+        </div>
+      </div>
+      <div class="timeline-text">
+        <p class="timeline-chapter">Chapter 04 — Pure Joy</p>
+        <h3 class="timeline-title">Imagica & Laughter</h3>
+        <p class="timeline-body">Sometimes the best days are the simplest ones — full of rides, laughter, and forgetting every worry. This day? One for the books. 🎢✨</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── HALL OF FAME ─────────────── -->
+<section class="hof-section">
+  <div class="container">
+    <h2 class="section-title reveal">Hall of Fame 🏆</h2>
+    <p class="section-sub reveal">Your favourite moments, forever framed</p>
+
+    <div class="hof-scroll-wrap">
+      <div class="hof-track" id="hof-track">
+
+        <div class="hof-card">
+          <div class="hof-card-img" onclick="openLightbox('img/naruto.png','🍥')">
+            <img src="img/naruto.png" alt="Photo 1" onerror="this.parentNode.innerHTML='🍥'">
+          </div>
+          <div class="hof-card-body">
+            <div class="hof-card-title">Naruto Fan 🍥</div>
+            <div class="hof-card-caption">"— Noodels and Hinata"</div>
+          </div>
+        </div>
+
+        <div class="hof-card">
+          <div class="hof-card-img" onclick="openLightbox('img/pickachu.png','⚡')">
+            <img src="img/pickachu.png" alt="Photo 2" onerror="this.parentNode.innerHTML='⚡'">
+          </div>
+          <div class="hof-card-body">
+            <div class="hof-card-title">Pikachu Energy ⚡</div>
+            <div class="hof-card-caption">" — always full of energy!"</div>
+          </div>
+        </div>
+
+        <div class="hof-card">
+          <div class="hof-card-img" onclick="openLightbox('img/demon.png','🗡️')">
+            <img src="img/demon.png" alt="Photo 3" onerror="this.parentNode.innerHTML='🗡️'">
+          </div>
+          <div class="hof-card-body">
+            <div class="hof-card-title">Demon Slayer 🌸</div>
+            <div class="hof-card-caption">"— a demon slayer at heart!"</div>
+          </div>
+        </div>
+
+        <div class="hof-card">
+          <div class="hof-card-img" onclick="openLightbox('img/spirit.png','🌊')">
+            <img src="img/spirit.png" alt="Photo 4" onerror="this.parentNode.innerHTML='🌊'">
+          </div>
+          <div class="hof-card-body">
+            <div class="hof-card-title">Free Spirit 🌊</div>
+            <div class="hof-card-caption">" — wild and free, always"</div>
+          </div>
+        </div>
+
+        <div class="hof-card">
+          <div class="hof-card-img" onclick="openLightbox('img/tokyo.png','🗼')">
+            <img src="img/tokyo.png" alt="Photo 5" onerror="this.parentNode.innerHTML='🗼'">
+          </div>
+          <div class="hof-card-body">
+            <div class="hof-card-title">Tokyo Dreams 🗼</div>
+            <div class="hof-card-caption">" — someday, Tokyo awaits!"</div>
+          </div>
+        </div>
+
+        <div class="hof-card">
+          <div class="hof-card-img" onclick="openLightbox('img/L.png','🍎')">
+            <img src="img/L.png" alt="Photo 6" onerror="this.parentNode.innerHTML='🍎'">
+          </div>
+          <div class="hof-card-body">
+            <div class="hof-card-title">L from Death Note 🍎</div>
+            <div class="hof-card-caption">"— genius vibes only"</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="hof-nav">
+        <button class="hof-btn" id="hof-left">←</button>
+        <button class="hof-btn" id="hof-right">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── GALLERY ─────────────── -->
+<section class="gallery-section">
+  <div class="container">
+    <h2 class="section-title reveal">The Y.V.A. Collection 📸</h2>
+    <p class="section-sub reveal">Your Very own Adventures — click to enlarge</p>
+    <div class="gallery-grid" id="gallery">
+      <!-- 12 items -->
+      <div class="gallery-item" onclick="openLightbox('img/1.png','🌸')">
+        <img src="img/1.png" alt="Memory 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>🌸</span><small>Memory 1</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/2.png','🌺')">
+        <img src="img/2.png" alt="Memory 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>🌺</span><small>Memory 2</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/3.png','🍀')">
+        <img src="img/3.png" alt="Memory 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>🍀</span><small>Memory 3</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/4.png','⭐')">
+        <img src="img/4.png" alt="Memory 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>⭐</span><small>Memory 4</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/5.png','🌙')">
+        <img src="img/5.png" alt="Memory 5" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>🌙</span><small>Memory 5</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/6.png','🦋')">
+        <img src="img/6.png" alt="Memory 6" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>🦋</span><small>Memory 6</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/7.png','🌈')">
+        <img src="img/7.png" alt="Memory 7" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>🌈</span><small>Memory 7</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/8.png','🎀')">
+        <img src="img/8.png" alt="Memory 8" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>🎀</span><small>Memory 8</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/9.png','🍡')">
+        <img src="img/9.png" alt="Memory 9" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>🍡</span><small>Memory 9</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/10.png','🎑')">
+        <img src="img/10.png" alt="Memory 10" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>🎑</span><small>Memory 10</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/11.png','🌟')">
+        <img src="img/11.png" alt="Memory 11" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>🌟</span><small>Memory 11</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+      <div class="gallery-item" onclick="openLightbox('img/12.png','💫')">
+        <img src="img/12.png" alt="Memory 12" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="gallery-placeholder" style="display:none"><span>💫</span><small>Memory 12</small></div>
+        <div class="overlay"><span>🔍</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────── FINALE ─────────────── -->
+<section class="finale-section">
+  <div class="container">
+    <h2 class="section-title reveal">Our Wishes For You 🌠</h2>
+    <p class="reveal">Because you deserve every single one of these, and so much more 💕</p>
+
+    <div class="wishes-grid">
+      <div class="wish-card reveal"><div class="wish-icon">😊</div><div class="wish-text">Endless smiles, every single day</div></div>
+      <div class="wish-card reveal" style="transition-delay:0.1s"><div class="wish-icon">🐾</div><div class="wish-text">A life full of cute animals and soft fur</div></div>
+      <div class="wish-card reveal" style="transition-delay:0.2s"><div class="wish-icon">📚</div><div class="wish-text">A story so good it becomes a manga</div></div>
+      <div class="wish-card reveal" style="transition-delay:0.3s"><div class="wish-icon">✈️</div><div class="wish-text">Adventures to every place on your list</div></div>
+      <div class="wish-card reveal" style="transition-delay:0.4s"><div class="wish-icon">💎</div><div class="wish-text">Always knowing your worth — a true gem</div></div>
+      <div class="wish-card reveal" style="transition-delay:0.5s"><div class="wish-icon">🌸</div><div class="wish-text">Beautiful moments that feel like cherry blossoms</div></div>
+    </div>
+
+    <div class="big-text reveal">🎂 AANYA 🎂</div>
+
+    <p class="reveal" style="color:var(--sakura);font-size:1.2rem;font-weight:700;">Have the most wonderful birthday!</p>
+  </div>
+</section>
+
+<!-- ─────────────── FOOTER ─────────────── -->
+<footer>
+  <p>🌸 Enjoy every moment of your special day, <strong>Aanya</strong> 🌸</p>
+  <p style="margin-top:0.5rem;">Hope you loved this little surprise...</p>
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.1);margin:1.5rem auto;max-width:200px">
+  <p>🇮🇳 India, with love</p>
+  <p style="margin-top:1rem;opacity:0.4;font-size:0.8rem">Made with ❤️ by Manish 😁</p>
+</footer>
+
+<!-- ─────────────── JAVASCRIPT ─────────────── -->
+<script>
+// ── STARS ──
+(function() {
+  const el = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      width:${Math.random()*3+1}px;
+      height:${Math.random()*3+1}px;
+      animation-delay:${Math.random()*3}s;
+      animation-duration:${2+Math.random()*3}s;
+    `;
+    el.appendChild(s);
+  }
+})();
+
+// ── SAKURA PETALS ──
+(function() {
+  const canvas = document.getElementById('sakura-canvas');
+  const ctx = canvas.getContext('2d');
+  let petals = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Petal {
+    constructor() { this.reset(); this.y = Math.random() * window.innerHeight; }
+    reset() {
+      this.x = Math.random() * window.innerWidth;
+      this.y = -20;
+      this.r = 4 + Math.random() * 6;
+      this.speedY = 0.8 + Math.random() * 1.5;
+      this.speedX = (Math.random() - 0.5) * 1.5;
+      this.rotation = Math.random() * Math.PI * 2;
+      this.rotSpeed = (Math.random() - 0.5) * 0.05;
+      this.alpha = 0.5 + Math.random() * 0.5;
+      const colors = ['#f4a7b9','#fbc4d0','#f8d7e3','#fce4ec','#f48fb1'];
+      this.color = colors[Math.floor(Math.random()*colors.length)];
+    }
+    update() {
+      this.y += this.speedY;
+      this.x += this.speedX + Math.sin(this.y * 0.01) * 0.5;
+      this.rotation += this.rotSpeed;
+      if (this.y > window.innerHeight + 20) this.reset();
+    }
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rotation);
+      ctx.globalAlpha = this.alpha;
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.ellipse(0, 0, this.r, this.r * 0.5, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  for (let i = 0; i < 35; i++) petals.push(new Petal());
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    petals.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ── COUNTDOWN ──
+(function() {
+  // Set your birthday target here — format: YYYY, MM-1, DD
+  // Default: next June 1st (adjust to Aanya's actual birthday!)
+  function getNextBirthday() {
+    const now = new Date();
+    let bd = new Date(now.getFullYear(), 5, 1); // June 1 — change month/day!
+    if (bd < now) bd.setFullYear(bd.getFullYear() + 1);
+    return bd;
+  }
+
+  function pad(n) { return String(n).padStart(2,'0'); }
+
+  function tick() {
+    const diff = getNextBirthday() - new Date();
+    if (diff <= 0) {
+      document.getElementById('cd-d').textContent = '🎂';
+      document.getElementById('cd-h').textContent = '🎂';
+      document.getElementById('cd-m').textContent = '🎂';
+      document.getElementById('cd-s').textContent = '🎂';
+      return;
+    }
+    const days  = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins  = Math.floor((diff % 3600000) / 60000);
+    const secs  = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = pad(days);
+    document.getElementById('cd-h').textContent = pad(hours);
+    document.getElementById('cd-m').textContent = pad(mins);
+    document.getElementById('cd-s').textContent = pad(secs);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// ── SCROLL PROGRESS ──
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+});
+
+// ── INTERSECTION OBSERVER ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal, .timeline-item, .gallery-item, .wish-card').forEach(el => observer.observe(el));
+
+// ── HOF SCROLL BUTTONS ──
+document.getElementById('hof-left').addEventListener('click', () => {
+  document.getElementById('hof-track').scrollBy({ left: -280, behavior: 'smooth' });
+});
+document.getElementById('hof-right').addEventListener('click', () => {
+  document.getElementById('hof-track').scrollBy({ left: 280, behavior: 'smooth' });
+});
+
+// ── LIGHTBOX ──
+function openLightbox(src, fallback) {
+  const lb = document.getElementById('lightbox');
+  const cnt = document.getElementById('lightbox-content');
+  const img = new Image();
+  img.src = src;
+  img.onload = () => {
+    cnt.innerHTML = '';
+    cnt.appendChild(img);
+  };
+  img.onerror = () => {
+    cnt.innerHTML = `<div class="lightbox-placeholder">${fallback}</div>`;
+  };
+  lb.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+window.openLightbox = openLightbox;
+window.closeLightbox = closeLightbox;
+
+// ── FLOATING HEARTS on click ──
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.hof-btn') || e.target.closest('#music-btn') || e.target.closest('.lightbox-overlay')) return;
+  const hearts = ['💕','🌸','✨','💖','🌷','⭐'];
+  const h = document.createElement('div');
+  h.className = 'floating-heart';
+  h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+  h.style.left = (e.clientX - 15) + 'px';
+  h.style.top  = (e.clientY - 15) + 'px';
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 4000);
+});
+
+// ── MUSIC (uses Web Audio API to play a simple birthday tune) ──
+let audioCtx = null, isPlaying = false, sourceNodes = [];
+function playBirthdaySong(ctx) {
+  const notes = [
+    261.6,261.6,293.7,261.6,349.2,329.6,0,
+    261.6,261.6,293.7,261.6,392,349.2,0,
+    261.6,261.6,523.2,440,349.2,329.6,293.7,0,
+    466.2,466.2,440,349.2,392,349.2,0
+  ];
+  const dur = 0.28;
+  let t = ctx.currentTime + 0.1;
+  notes.forEach(freq => {
+    if (freq === 0) { t += dur; return; }
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.frequency.value = freq;
+    osc.type = 'triangle';
+    gain.gain.setValueAtTime(0, t);
+    gain.gain.linearRampToValueAtTime(0.25, t + 0.02);
+    gain.gain.linearRampToValueAtTime(0, t + dur - 0.05);
+    osc.start(t); osc.stop(t + dur);
+    sourceNodes.push(osc);
+    t += dur;
+  });
+  return t - ctx.currentTime;
+}
+
+function toggleMusic() {
+  const btn = document.getElementById('music-btn');
+  if (isPlaying) {
+    sourceNodes.forEach(n => { try { n.stop(); } catch(e) {} });
+    sourceNodes = [];
+    if (audioCtx) { audioCtx.close(); audioCtx = null; }
+    isPlaying = false;
+    btn.classList.remove('playing');
+    btn.textContent = '🎵';
+  } else {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const len = playBirthdaySong(audioCtx);
+    isPlaying = true;
+    btn.classList.add('playing');
+    btn.textContent = '🎶';
+    setTimeout(() => {
+      isPlaying = false;
+      btn.classList.remove('playing');
+      btn.textContent = '🎵';
+      sourceNodes = [];
+    }, len * 1000);
+  }
+}
+</script>
+</body>
+</html>
