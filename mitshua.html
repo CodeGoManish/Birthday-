@@ -798,10 +798,12 @@
 // ── COUNTDOWN ──
 (function() {
   // Set your birthday target here — format: YYYY, MM-1, DD
-  // Default: next June 1st (adjust to Aanya's actual birthday!)
   function getNextBirthday() {
     const now = new Date();
-    let bd = new Date(now.getFullYear(2004), 5, 27); // June 1 — change month/day!
+    // 27 May ke liye: Month = 4 (May) aur Day = 27
+    let bd = new Date(now.getFullYear(), 4, 27); 
+    
+    // Agar is saal ki 27 May nikal chuki hai, toh agle saal ka countdown shuru ho jaye
     if (bd < now) bd.setFullYear(bd.getFullYear() + 1);
     return bd;
   }
@@ -829,7 +831,6 @@
   tick();
   setInterval(tick, 1000);
 })();
-
 // ── SCROLL PROGRESS ──
 window.addEventListener('scroll', () => {
   const h = document.documentElement;
