@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verification</title>
+
+    <style>
+        body{
+            margin:0;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:#111;
+            font-family:Arial;
+            color:white;
+        }
+
+        .box{
+            text-align:center;
+            background:#1e1e1e;
+            padding:40px;
+            border-radius:20px;
+            width:320px;
+            box-shadow:0 0 20px rgba(255,255,255,0.1);
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin-top:15px;
+            border:none;
+            border-radius:10px;
+            outline:none;
+        }
+
+        button{
+            margin-top:20px;
+            padding:12px 20px;
+            border:none;
+            border-radius:10px;
+            background:#ff4d6d;
+            color:white;
+            cursor:pointer;
+            width:100%;
+        }
+
+        button:hover{
+            background:#ff1e4d;
+        }
+
+        .error{
+            color:red;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+
+    <h2>Enter Secret Name 💖</h2>
+
+    <input type="text" id="secretInput" placeholder="Enter name..." />
+
+    <button onclick="verifyName()">
+        Open
+    </button>
+
+    <div class="error" id="error"></div>
+
+</div>
+
+<script>
+
+function verifyName(){
+
+    const input =
+        document
+        .getElementById("secretInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+    if(input === "mitshua"){
+
+        window.location.href = "mitshua.html";
+
+    } else {
+
+        window.location.href = "aanya.html";
+    }
+}
+
+</script>
+
+</body>
+</html>
