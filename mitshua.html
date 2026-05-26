@@ -801,7 +801,7 @@
   // Default: next June 1st (adjust to Aanya's actual birthday!)
   function getNextBirthday() {
     const now = new Date();
-    let bd = new Date(now.getFullYear(), 5, 1); // June 1 — change month/day!
+    let bd = new Date(now.getFullYear(2004), 5, 27); // June 1 — change month/day!
     if (bd < now) bd.setFullYear(bd.getFullYear() + 1);
     return bd;
   }
